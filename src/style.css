@@ -1,0 +1,118 @@
+body {
+    margin: 0;
+    background: #ffffff;
+    font-family:Arial, Helvetica, sans-serif;
+}
+.hat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: #f4efec;
+}
+.logo img{
+    height: 45px;
+}
+.menu button {
+    margin: 0 5px;
+    padding: 6px 14px;
+    border-radius: 10px;
+    border: 1px solid #999999;
+    background: #f4efec;
+    cursor: pointer;
+}
+.user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+.container {
+    padding: 20px 40px;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.table {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 100px;
+    justify-content: center;
+}
+.case-card {
+    width: 220px;
+    padding: 10px;
+    background: #cccccc;
+    border-radius: 15px;
+    text-align: center;
+    color: #000000;
+    text-decoration: none;
+}
+.case-card:hover {
+    transform: translateY(-5px);
+    transition: 0.2s;
+}
+.case-img {
+    height: 220px;
+    background: #eeeeee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+.case-img img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+.skin-preview{
+    margin-top: 30px;
+    display: flex;
+    gap: 15px;
+    border-radius: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    background: #cccccc;
+    
+}
+.skin-card{
+    width: 220px;
+    padding: 10px;
+    margin: 20px;
+    background: #eeeeee;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 12px;
+}
+.skin-card img{
+    max-width: 100%;
+    max-height: 120px;
+}
+.Classified{
+    background: #d32ce6;
+}
+.Covert{
+    background: #eb4b4b;
+}
+.Restricted{
+    background: #8847ff;
+}
+.Mil-spec{
+    background: #4b69cd;
+}
+.Industrial{
+    background: #6496e1;
+}
+.Consumer{
+    background: #afafaf;
+}
+.Extraordinary{
+    background: #f0b23f;
+}
