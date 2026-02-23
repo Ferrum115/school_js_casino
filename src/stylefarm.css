@@ -1,0 +1,101 @@
+body{
+    background-color: #1F213D;
+    margin: 0;
+}
+.hat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f4efec;
+}
+.logo img{
+    height: 45px;
+}
+.menu button {
+    margin: 0 5px;
+    padding: 6px 14px;
+    border-radius: 10px;
+    border: 1px solid #999999;
+    background: #f4efec;
+    cursor: pointer;
+}
+.user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+.container-frame{
+    border-style: solid;
+    border-color: #4A8198;
+    background-color: #1E203A;
+    border-radius: 20px;
+    border-width: 1px;
+    position:  absolute;
+    height: 470px;
+    width: 470px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.container-counter{
+    border-style: solid;
+    border-color: #4A8198;
+    border-radius: 20px;
+    border-width: 1px;
+    position:  absolute;
+    top: 40px;
+    left: 20px;
+    height: 75px;
+    width: 250px;     
+    text-align:center;  
+}
+.counter{    
+    color: #B0D9E0;
+    font-family: 'JetBrainsMono';
+    font-size: 48px;
+    font-weight: bold;  
+
+}
+@font-face {
+    font-family: 'JetBrainsMono';
+    src: url('fonts/JetBrainsMono-Bold.woff2') format('woff2');
+}
+.confirm{
+    border-style: solid;
+    border-color: #9E0000;
+    background-color: #9D2626;
+    border-radius: 100%;
+    border-width: 1px;
+    position:  absolute;
+    height: 120px;
+    width: 120px;
+    top: 17px;
+    left: 310px;
+    color: #B0D9E0;
+    font-family: 'JetBrainsMono';
+    font-size: 20px;
+    font-weight: bold;  
+}
+.tap{
+    border-width: 0px;
+    position: absolute;
+    left: 50%;
+    bottom: 40px;
+    height: 270px;
+    width: 270px;
+    transform: translate(-50%, 0%);
+    background-image: url('img/arbuz.png') ;
+    background-position: center;
+    background-size: 105%;
+    border-radius: 135px;
+    background-repeat:no-repeat;
+    background-color: rgba(0,0,0,0);
+}
+.confirm:active{
+    filter: brightness(85%);
+}
