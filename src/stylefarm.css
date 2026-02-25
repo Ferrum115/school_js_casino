@@ -1,12 +1,14 @@
 body{
     background-color: #1F213D;
     margin: 0;
+    color: #B0D9E0;
 }
 .hat {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #f4efec;
+    padding: 10px 20px;
+    background: #616486;
 }
 .logo img{
     height: 45px;
@@ -15,8 +17,9 @@ body{
     margin: 0 5px;
     padding: 6px 14px;
     border-radius: 10px;
-    border: 1px solid #999999;
-    background: #f4efec;
+    border: 2px solid #4A8198;
+    color: #B0D9E0;
+    background: #616486;
     cursor: pointer;
 }
 .user {
@@ -89,7 +92,7 @@ body{
     height: 270px;
     width: 270px;
     transform: translate(-50%, 0%);
-    background-image: url('img/arbuz.png') ;
+    background-image: url('/images/arbuz.png') ;
     background-position: center;
     background-size: 105%;
     border-radius: 135px;

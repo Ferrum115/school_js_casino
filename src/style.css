@@ -1,6 +1,7 @@
 body {
     margin: 0;
-    background: #ffffff;
+    background: #1F213D;
+    color: #B0D9E0;
     font-family:Arial, Helvetica, sans-serif;
 }
 .hat {
@@ -8,7 +9,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background: #f4efec;
+    background: #616486;
 }
 .logo img{
     height: 45px;
@@ -17,8 +18,9 @@ body {
     margin: 0 5px;
     padding: 6px 14px;
     border-radius: 10px;
-    border: 1px solid #999999;
-    background: #f4efec;
+    border: 2px solid #4A8198;
+    color: #B0D9E0;
+    background: #616486;
     cursor: pointer;
 }
 .user {
@@ -48,10 +50,10 @@ body {
 .case-card {
     width: 220px;
     padding: 10px;
-    background: #cccccc;
+    color: #B0D9E0;
+    background: #010427;
     border-radius: 15px;
     text-align: center;
-    color: #000000;
     text-decoration: none;
 }
 .case-card:hover {
@@ -60,7 +62,7 @@ body {
 }
 .case-img {
     height: 220px;
-    background: #eeeeee;
+    background: #686977;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -79,8 +81,24 @@ body {
     border-radius: 10px;
     flex-wrap: wrap;
     justify-content: center;
-    background: #cccccc;
+    background: #343653;
     
+}
+.open-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.open-button:disabled {
+  cursor: not-allowed;
+}
+
+.open-button img {
+  width: 220px;
+  height: auto;
+  display: block;
 }
 .skin-card{
     width: 220px;
@@ -97,11 +115,21 @@ body {
 }
 .roulette-wrapper {
   width: 800px;
-  height: 150px;
+  height: 130px;
   overflow: hidden;
   margin: 40px auto;
-  border: 2px solid black;
+  border: 2px solid #4A8198;
+  border-radius: 10px;
   position: relative;
+}
+
+.roulette-line {
+  position: absolute;
+  left: 50%;
+  width: 4px;
+  height: 130px;
+  background: linear-gradient(to bottom, #B0D9E0 0%, transparent 30%, transparent 70%, #B0D9E0 100%);
+  z-index: 1;
 }
 
 .roulette {

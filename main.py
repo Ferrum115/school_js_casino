@@ -12,13 +12,13 @@ app.add_middleware(
 
 DATABASE = "database.db"
 weight = {
-    "Consumer": 40,
-    "Industrial": 25,
-    "Mil-spec": 15,
-    "Restricted": 10,
-    "Classified": 6,
-    "Covert": 3,
-    "Extraordinary": 1
+    "Consumer": 0.80,
+    "Industrial": 0.16,
+    "Mil-spec": 0.032,
+    "Restricted": 0.0064,
+    "Classified": 0.0013,
+    "Covert": 0.00026,
+    "Extraordinary": 0.00004
 }
 def get_db():
     conn = sqlite3.connect(DATABASE)
@@ -30,8 +30,8 @@ def get_case(case_id: str):
     cases = {
         'USP-S': {
             "title": 'USP-S',
-            "img": 'images/USPS_CASE.png',
-            "price": '850',
+            "img": '/images/USPS_CASE.png',
+            "price": '10',
             "skins": [
                 9, 391, 392, 393, 394, 395, 396, 397, 398, 399, 400, 401, 402, 403,
                 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417,
@@ -40,7 +40,7 @@ def get_case(case_id: str):
         },
         'EPSTEIN': {
             "title": 'EPSTEIN',
-            "img": 'images/EPSTEIN.png',
+            "img": '/images/EPSTEIN.png',
             "price": '1000',
             "skins": [
                 100,4,42,33,15,8,9,10,2,50,12
@@ -68,7 +68,19 @@ def get_case(case_id: str):
         },
         "skins": [dict(skin) for skin in skins]
     }
-@app.post("/case/open/{case_id}")
+
+@app.get("/case/open/{case_id}")
+def add_case(id: str, name: str, image: str, price: int, skins: list):
+
+    try:
+        conn = get_db()
+        cursor = conn.cursor()
+        cursor.execute(f"INSERT INTO cases(id, title, img, price, skins) VALUES({id}, {name}, {image}, {price}, {skins})")
+        conn.close()
+    except:
+        print(f'nothing worked, cry about it bozo')
+        
+@app.post("/case/{case_id}")
 def open_case(case_id: str):
 
     cases = {

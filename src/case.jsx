@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { useUser } from "./userContext";
 
 export default function CasePage() {
   const [data, setData] = useState(null);
@@ -6,8 +8,10 @@ export default function CasePage() {
   const [opening, setOpening] = useState(false);
   const [roulette, setRoulette] = useState([]);
   const [winnerIndex, setWinnerIndex] = useState(null);
-  const params = new URLSearchParams(window.location.search);
-  const caseId = params.get("id");
+  const { user, updateBalance } = useUser();
+  const {id} = useParams();
+  const caseId = id?.toUpperCase();
+  console.log(caseId)
   useEffect(() => {
     fetch(`http://127.0.0.1:8000/case/${caseId}`)
       .then(res => res.json())
@@ -31,12 +35,17 @@ const moving = winnerIndex !== null
       : 0;
 const openCase = async() => {
   if (opening || !data) return;
+  if (user.balance < parseInt(data.case.price)) {
+      alert('Недостаточно средств!');
+      return;
+    }
   setOpening(true);
   setWinnerIndex(null);
   setRoulette([]);
+  updateBalance(user.balance - parseInt(data.case.price));
 try {
       const res = await fetch(
-        `http://127.0.0.1:8000/case/open/${caseId}`,
+        `http://127.0.0.1:8000/case/${caseId}`,
         { method: "POST" }
       );
 
@@ -73,19 +82,20 @@ try {
     <>
       <header className="hat">
         <div className="logo">
-          <img src="images/light_logo.png" alt="logo"/>
+          <img src="/images/light_logo.png" alt="logo"/>
         </div>
 
         <div className="menu">
-           <a href="index.html"><button>Кейсы</button></a>
+           <Link to="/"><button>Кейсы</button></Link>
         <button>Улучшение</button>
         <button>Контракт</button>
-        <a href="jsfarm.html"><button>Фармилка</button></a>
+        <Link to='/taptap'><button>Фармилка</button></Link>
         </div>
 
         <div className="user">
-          <div className="balance">10000 шлепок</div>
-          <img className="avatar" src="img/avatar.png" alt="avatar"/>
+          <div className="balance">{user?.balance || 0} арбузиков</div>
+          <img className="avatar" src={user?.avatar || "/images/avatar.png"} alt="avatar"/>
+          <span>{user.nickname}</span>
         </div>
       </header>
 
@@ -96,9 +106,16 @@ try {
         </div>
 
         <div className="case-price">Цена: {data.case.price} арбузиков</div>
-        <button id="opener" onClick={openCase} disabled={opening}>Открыть кейс</button>
+        <button id="opener" onClick={openCase} disabled={opening} className="open-button"><img
+    src={
+      opening
+        ? "/images/disabled_button.png"
+        : "/images/active_button.png"
+    }
+    alt="Открыть кейс"/></button>
         {roulette.length > 0 && (
           <div className="roulette-wrapper">
+            <div className="roulette-line"></div>
             <div
               className="roulette" style={{
                 transform: `translateX(-${moving}px)`,
