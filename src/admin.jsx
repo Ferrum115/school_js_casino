@@ -11,24 +11,29 @@ export default function Admin() {
     const [skins, setSkins] = useState([0]);
 
     const sendCase = () => {
-        fetch('http://127.0.0.1:8000/case/', {
+        fetch('http://127.0.0.1:8000/case', {
             method: 'POST',
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
             body: JSON.stringify({
-                "id": id,
-                "title": name,
-                "image": image,
-                "price": price,
-                "skins": skins
-            })
+            id: id,
+            title: name,
+            image: image,
+            price: parseInt(price),
+            skins: skins
         })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-            })
-            .catch((err) => {
-                console.log(err.message);
-            })
-    };
+        })
+    .then(r => r.json().then(data => ({status: r.status, data})))
+    .then(res => {
+        if (res.status === 422) {
+            console.error("FastAPI недоволен полями:", res.data.detail);
+        } else {
+            console.log("Успех:", res.data);
+        }
+    });
+};
     const handleUserInventory = () => {
         fetch('http://127.0.0.1:8000/users', {
             method: "POST",
@@ -75,24 +80,25 @@ export default function Admin() {
                 </div>
 
                 <button>exit admin</button>
-                <section>
+                </header>
+                {/* <section>
                     <a>user toolkit</a>
-                    <input type="text" value={username} onChange={setUsername}> target username</input>
+                    <span></span><input type="text" value={username} onChange={setUsername}/>
                     <input type="number" value={itemid} onChange={setItemid}> item id</input>
                     <input type="number" value={money} onChange={setMoney}> money</input>
                     <button onClick={handleUserInventory}>add</button>
                     <button onClick={banUser}>ban</button>
-                </section>
+                </section> */}
                 <section>
-                    <a>case toolkit</a>
-                    <input type="text" value={id} onChange={setId}> case id</input>
-                    <input type="text" value={name} onChange={setName}> case name</input>
-                    <input type="number" value={price} onChange={setPrice}> case price</input>
-                    <input type="text" value={image} onChange={setImage}> image id</input>
-                    <input type="text" value={skins} onChange={setSkins}> skins id</input>
-                    <button onClick={sendCase}>add</button>
+                    <div>case toolkit</div>
+
+                    <div><input type="text" value={id} onChange={(e) => setId(e.target.value)}/> <span>case id</span> </div>
+                    <div><input type="text" value={name} onChange={(e) => setName(e.target.value)}/> <span>case name</span> </div>
+                    <div><input type="number" value={price} onChange={(e) => setPrice(e.target.value)}/> <span>case price</span> </div>
+                    <div><input type="text" value={image} onChange={(e) => setImage(e.target.value)}/> <span>image id</span> </div>
+                    <div><input type="text" value={skins} onChange={(e) => setSkins(e.target.value)}/> <span>skins</span> </div>
+                    <div><button type="button" onClick={sendCase} >add</button></div>
                 </section>
-            </header>
         </>
     );
 }
