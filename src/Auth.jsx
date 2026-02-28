@@ -15,7 +15,7 @@ export default function Auth({ onLogin }) {
     const user = {
       nickname: nickname.trim(),
       balance: 10000,
-      avatar: 'images/avatar.png'
+      avatar: '/images/avatar.png'
     };
 
     onLogin(user);
@@ -36,9 +36,7 @@ export default function Auth({ onLogin }) {
             />
           </div>
           {error && <div className="auth-error">{error}</div>}
-          <button type="submit" className="auth-button">
-            Войти
-          </button>
+          <button type="submit" className="auth-button">Войти</button>
         </form>
       </div>
     </div>

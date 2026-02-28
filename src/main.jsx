@@ -7,8 +7,10 @@ import Login from "./login";
 import CasePage from "./case.jsx";
 import Admin from "./admin.jsx";
 import TapCounter from "./tap.jsx";
+import ProfilePage from "./Profile.jsx";
 import "./style.css";
 import "./stylefarm.css";
+import "./Profile.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <UserProvider>
@@ -18,6 +20,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/case/:id" element={<CasePage />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/taptap" element={<TapCounter />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
   </BrowserRouter>
   </UserProvider>

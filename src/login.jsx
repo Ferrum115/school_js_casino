@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
-
 export default function Login({ onLogin }) {
   const [nickname, setNickname] = useState('');
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (nickname.trim()) {
       onLogin(nickname.trim());
     }
   };
-
   return (
     <div className="login-container">
       <div className="login-box">

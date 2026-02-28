@@ -6,7 +6,7 @@ export default function TapCounter() {
   const [isHovered, setIsHovered] = useState(false);
   const [isPressed, setIsPressed] = useState(false);
   const [loading, setLoading] = useState(true);
-  const { user, updateBalance } = useUser();
+  const { user, updateUser } = useUser();
 
   useEffect(() => {
     if (user !== undefined) {
@@ -24,17 +24,15 @@ export default function TapCounter() {
   }
   
   const handleTap = () => {
-    setCount(prev => prev + 1);
+    setCount(prev => (prev + 0.05));
   };
 
   const handleConfirm = () => {
-    updateBalance(user.balance + count);
-    setCount(0);
-    
+    updateUser({balance: user.balance + count});
+    setCount(0.0);
   };
 
-  const formattedCount = String(count).padStart(8, '0');
-
+  const formattedCount = String(count.toFixed(2)).padStart(8, '0');
   const getBackgroundImage = () => {
     if (isPressed) return `url(/images/active-arbuz.gif)`;
     if (isHovered) return `url(/images/static_arbuz.png)`;
@@ -43,46 +41,48 @@ export default function TapCounter() {
 
   return (
     <>
-    <header className="hat">
+      <header className="hat">
         <div className="logo">
           <img src="images/light_logo.png" alt="logo"/>
         </div>
 
         <div className="menu">
-           <Link to="/"><button>Кейсы</button></Link>
-           <button>Улучшение</button>
-           <button>Контракт</button>
-           <Link to="/taptap"><button>Фармилка</button></Link>
+            <Link to="/"><button>Кейсы</button></Link>
+            <button>Улучшение</button>
+            <button>Контракт</button>
+            <Link to="/taptap"><button>Фармилка</button></Link>
         </div>
 
         <div className="user">
-        <div className="balance">{user.balance} арбузиков</div>
-        <img className="avatar" src={user.avatar} alt="avatar"/>
-        <span>{user.nickname}</span>
+          <div className="balance">{user.balance.toFixed(2)} арбузиков</div>
+          <Link to='/profile'><img className="avatar" src={user.avatar} alt="avatar" /></Link>
+          <span>{user.nickname}</span>
         </div>
-
       </header>
-    <div className="container-frame">
-      <div className="container-counter">
-        <b className="counter">{formattedCount}</b>
+
+      <div className="container-frame">
+        <div className="container-counter">
+          <b className="counter">{formattedCount}</b>
+       </div>
+       <button
+          type="button"
+          className="confirm"
+          onClick={handleConfirm}>ЗАЧИСЛИТЬ
+        </button>
+        <button
+          type="button"
+          className="tap"
+          style={{ backgroundImage: getBackgroundImage() }}
+          onClick={handleTap}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => {
+            setIsHovered(false);
+            setIsPressed(false);
+          }}
+          onMouseDown={() => setIsPressed(true)}
+          onMouseUp={() => setIsPressed(false)}>
+        </button>
       </div>
-      <button
-        type="button"
-        className="confirm"
-        onClick={handleConfirm}>ЗАЧИСЛИТЬ</button>
-      <button
-        type="button"
-        className="tap"
-        style={{ backgroundImage: getBackgroundImage() }}
-        onClick={handleTap}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => {
-          setIsHovered(false);
-          setIsPressed(false);
-        }}
-        onMouseDown={() => setIsPressed(true)}
-        onMouseUp={() => setIsPressed(false)}></button>
-    </div>
     </>
   );
 };
