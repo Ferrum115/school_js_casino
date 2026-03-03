@@ -15,7 +15,7 @@ export function UserProvider({ children }) {
   const login = (nickname) => {
     const newUser = {
       nickname: nickname,
-      balance: 10000,
+      balance: 50,
       avatar: '/images/avatar.png',
       spent: 0,
       openedCases: 0,

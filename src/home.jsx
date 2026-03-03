@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { UserProvider, useUser } from "./userContext";
 import Login from "./login";
 export default function Home(){
+    const [cases, setCases] = useState({});
+    const [newCases, setNewCases] = useState({});
+    useEffect(() => {
+        fetch("http://127.0.0.1:8000/cases")
+            .then(res => res.json())
+            .then(data => {
+                setCases(data.cases || {});
+                setNewCases(data.newcases || {});
+            })
+            .catch(err => console.error(err));
+    }, []);
+
     const { user, login } = useUser();
     if (!user) {
         return <Login onLogin={login} />;
@@ -30,14 +42,38 @@ export default function Home(){
         </header>
 
         <main className="container">
-            <h1>Оружейные кейсы</h1>
+            <h1 className="type_name">Игровые кейсы</h1>
             <div className="table">
                 <Link to="/case/USP-S" className="case-card">
                     <div className="case-img">
                     <img src="/images/USPS_CASE.png" />
                     </div>
                     <div className="case-title">USP-S</div>
-                    <div className="case-price">Цена: 10</div>
+                    <div className="case-price">Цена: 4</div>
+                </Link>
+
+                <Link to="/case/EPSTEIN" className="case-card">
+                    <div className="case-img">
+                        <img src="/images/EPSTEIN.png" />
+                    </div>
+                    <div className="case-title">EPSTEIN</div>
+                    <div className="case-price">Цена: 1000</div>
+                </Link>
+                
+                <Link to="/case/DEVIANT" className="case-card">
+                    <div className="case-img">
+                        <img src="/images/cyberlife.png" />
+                    </div>
+                    <div className="case-title">DEVIANT</div>
+                    <div className="case-price">Цена: 7</div>
+                </Link>
+
+                <Link to="/case/EVA-02" className="case-card">
+                    <div className="case-img">
+                        <img src="/images/eva02.png" />
+                    </div>
+                    <div className="case-title">EVA-02</div>
+                    <div className="case-price">Цена: 0.89</div>
                 </Link>
 
                 <Link to="/case/EPSTEIN" className="case-card">
@@ -49,6 +85,68 @@ export default function Home(){
                 </Link>
 
             </div>
+
+            <h1 className="type_name">Мем кейсы</h1>
+            <div className="table">
+                <Link to="/case/USP-S" className="case-card">
+                    <div className="case-img">
+                    <img src="/images/USPS_CASE.png" />
+                    </div>
+                    <div className="case-title">USP-S</div>
+                    <div className="case-price">Цена: 4</div>
+                </Link>
+
+                <Link to="/case/EPSTEIN" className="case-card">
+                    <div className="case-img">
+                        <img src="/images/EPSTEIN.png" />
+                    </div>
+                    <div className="case-title">EPSTEIN</div>
+                    <div className="case-price">Цена: 1000</div>
+                </Link>
+                
+                <Link to="/case/DEVIANT" className="case-card">
+                    <div className="case-img">
+                        <img src="/images/cyberlife.png" />
+                    </div>
+                    <div className="case-title">DEVIANT</div>
+                    <div className="case-price">Цена: 7</div>
+                </Link>
+
+                <Link to="/case/EVA-02" className="case-card">
+                    <div className="case-img">
+                        <img src="/images/eva02.png" />
+                    </div>
+                    <div className="case-title">EVA-02</div>
+                    <div className="case-price">Цена: 17</div>
+                </Link>
+
+                <Link to="/case/SHREK" className="case-card">
+                    <div className="case-img">
+                        <img src="/images/shrek.png" />
+                    </div>
+                    <div className="case-title">SHREK</div>
+                    <div className="case-price">Цена: 1000</div>
+                </Link>
+
+            </div>
+
+            {Object.keys(newCases).length > 0 && (
+                    <>
+                        <h1>Новые кейсы</h1>
+                        <div className="table">
+                            {Object.entries(newCases).map(([caseId, caseData]) => (
+                                <Link key={caseId} to={`/case/${caseId}`} className="case-card">
+                                    <div className="case-img">
+                                        <img src={caseData.img} alt={caseData.title} />
+                                    </div>
+                                    <div className="case-title">{caseData.title}</div>
+                                    <div className="case-price">Цена: {caseData.price}</div>
+                                </Link>
+                            ))}
+                        </div>
+                    </>
+            )}
+
         </main>
         </>
     );

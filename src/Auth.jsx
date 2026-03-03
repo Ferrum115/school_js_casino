@@ -14,7 +14,7 @@ export default function Auth({ onLogin }) {
 
     const user = {
       nickname: nickname.trim(),
-      balance: 10000,
+      balance: 50.0,
       avatar: '/images/avatar.png'
     };
 

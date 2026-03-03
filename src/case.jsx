@@ -70,7 +70,7 @@ export default function CasePage() {
       : 0;
   const openCase = async() => {
     if (opening || !data) return;
-    if (user.balance < parseInt(data.case.price)) {
+    if (user.balance < parseFloat(data.case.price)) {
       alert('Недостаточно средств!');
       return;
     }
@@ -78,8 +78,8 @@ export default function CasePage() {
     setWinnerIndex(null);
     setRoulette([]);
     updateUser({
-      balance: user.balance - parseInt(data.case.price),
-      spent: (user.spent || 0) + parseInt(data.case.price),
+      balance: user.balance - parseFloat(data.case.price),
+      spent: (user.spent || 0) + parseFloat(data.case.price),
       openedCases: (user.openedCases || 0) + 1
     });
     try {
@@ -105,7 +105,7 @@ export default function CasePage() {
       setTimeout(() => {
         setOpening(false);
         setWonSkin(winner);
-      }, 5050);
+      }, 7050);
     } catch (err) {
       console.error(err);
       setOpening(false);
@@ -170,7 +170,7 @@ export default function CasePage() {
           {sortedSkins.map(skin => (
             <div className={`skin-card ${skin.Rarity}`} key={skin.ID}>
               <img src={skin.Image_path} alt={skin.Name}/>
-              <div>{skin.Name}</div>
+              <div style={{color: '#1d1e29'}}>{skin.Name}</div>
             </div>
           ))}
         </div>
@@ -182,8 +182,8 @@ export default function CasePage() {
             <h2>Вам выпал:</h2>
             <div className={`skin-card big ${wonSkin.Rarity}`}>
               <img src={wonSkin.Image_path} alt={wonSkin.Name} />
-              <div >{wonSkin.Name}</div>
-              <div>Цена: {(wonSkin.price)} арбузиков</div>
+              <div style={{color: '#1d1e29'}}>{wonSkin.Name}</div>
+              <div style={{color: '#1d1e29'}}>Цена: {(wonSkin.price)} арбузиков</div>
             </div>
             <div className="modal-buttons">
               <button className="skin-action-button"  onClick={() => handleAddToInventory(wonSkin)}>
