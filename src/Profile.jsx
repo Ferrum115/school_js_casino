@@ -43,6 +43,7 @@ export default function ProfilePage() {
           src={user.avatar || "/images/avatar.png"}
           alt="Avatar"
         />
+        <Link to="/admin"  className="traveler">Админ-панель</Link>
         <h1 className="name">{user.nickname}</h1>
         <h2 className="money-bye">Потрачено: {user.spent || 0} арбузов</h2>
         <h2 className="case-amount">Открыто кейсов: {user.openedCases || 0}</h2>

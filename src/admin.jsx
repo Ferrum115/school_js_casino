@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useUser } from "./userContext";
+import Login from "./login";
 export default function Admin() {
+    const { user, login } = useUser();
+    const [cases, setCases] = useState({});
+    const [newCases, setNewCases] = useState({});
     const [username, setUsername] = useState('');
     const [itemid, setItemid] = useState(0);
     const [money, setMoney] = useState(0);
@@ -9,7 +14,7 @@ export default function Admin() {
     const [price, setPrice] = useState(0);
     const [image, setImage] = useState('');
     const [skins, setSkins] = useState([0]);
-
+    if (!user) return <Login onLogin={login} />;
     const sendCase = () => {
         fetch('http://127.0.0.1:8000/case', {
             method: 'POST',
@@ -22,7 +27,7 @@ export default function Admin() {
             title: name,
             image: image,
             price: parseInt(price),
-            skins: skins
+            skins: skins.split(',').map(Number)
         })
         })
     .then(r => r.json().then(data => ({status: r.status, data})))
@@ -31,6 +36,12 @@ export default function Admin() {
             console.error("FastAPI недоволен полями:", res.data.detail);
         } else {
             console.log("Успех:", res.data);
+            fetch("http://127.0.0.1:8000/cases")
+                .then(res => res.json())
+                .then(data => {
+                    setCases(data.cases || {});
+                    setNewCases(data.newCases || {});
+                });
         }
     });
 };
@@ -63,24 +74,24 @@ export default function Admin() {
     return (
         <>
             <header className="hat">
-                <div className="logo">
-                    <img src="/images/pfp.jpg" alt="logo"/>
-                </div>
-
-                <div className="menu">
-                    <a href="index.html"><button>Кейсы</button></a>
-                    <button>Улучшение</button>
-                    <button>Контракт</button>
-                    <button>Фармилка</button>
-                </div>
-
-                <div className="user">
-                    <div className="balance">многа деняк</div>
-                    <img className="avatar" src="/images/pfp.jpg" alt="avatar"/>
-                </div>
-
-                <button>exit admin</button>
-                </header>
+                        <div className="logo">
+                            <img src="images/light_logo.png" alt="logo" />
+                        </div>
+                        <div className="menu">
+                            <Link to="/"><button>Кейсы</button>
+                            </Link>
+                            <button>Улучшение</button>
+                            <button>Контракт</button>
+                            <Link to='/taptap'><button>Фармилка</button></Link>
+                        </div>
+                        <div className="user">
+                            <div className="balance">
+                                {user.balance.toFixed(2)} арбузиков
+                            </div>
+                            <Link to='/profile'><img className="avatar" src={user.avatar} alt="avatar" /></Link>
+                            <span>{user.nickname}</span>
+                        </div>
+                    </header>
                 {/* <section>
                     <a>user toolkit</a>
                     <span></span><input type="text" value={username} onChange={setUsername}/>
@@ -99,6 +110,15 @@ export default function Admin() {
                     <div><input type="text" value={skins} onChange={(e) => setSkins(e.target.value)}/> <span>skins</span> </div>
                     <div><button type="button" onClick={sendCase} >add</button></div>
                 </section>
+                <button onClick={() => {
+                    fetch("http://127.0.0.1:8000/cases")
+                    .then(res => res.json())
+                    .then(data => {
+                        setCases(data.cases || {});
+                        setNewCases(data.newCases || {});
+                    });
+                    }}>Обновить кейсы
+                </button>
         </>
     );
 }

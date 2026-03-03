@@ -84,6 +84,9 @@ body {
     background: #343653;
     
 }
+.type_name{
+    padding-top: 60px;
+}
 .open-button {
     background: none;
     border: none;
@@ -130,7 +133,7 @@ body {
 }
 .roulette {
     display: flex;
-    transition: transform 5s cubic-bezier(0.1, 0.7, 0.1, 1);
+    transition: transform 7s cubic-bezier(0.1, 0.7, 0.1, 1);
 }
 .roulette-skin-card {
     width: 160px;
