@@ -5,7 +5,6 @@ import random
 from pydantic import BaseModel
 from typing import List
 import pickle
-import os
 
 app=FastAPI()
 app.add_middleware(
@@ -24,7 +23,7 @@ class CaseData(BaseModel):
     title: str
     image: str
     price: int
-    skins: List[int]
+    skins: str
 
 cases = {
     'USP-S': {
@@ -42,7 +41,7 @@ cases = {
         "img": '/images/EPSTEIN.png',
         "price": '6',
         "skins": [
-            590,172,425,443,659,418,5,1074,110,605,350,450,247,767,97,552,620,1009,470,199,563,1455,1612,1532
+            100, 4, 42, 33, 15, 8, 9, 10, 2, 50, 12
         ]
     },
     'DEVIANT': {
@@ -50,7 +49,8 @@ cases = {
         "img": '/images/cyberlife.png',
         "price": '7',
         "skins": [
-            762,543,759,358,1007,556,457,718,854,771,463,465,327,1009,576,896,56,405,774,483,11,408,571,1451,1452,1453,1454
+            762, 543, 759, 358, 1007, 556, 457, 718, 854, 771, 463, 465, 327, 1009, 576, 896, 56, 405, 774, 483, 11,
+            408, 571, 1451, 1452, 1453, 1454
         ]
     },
     'EVA-02': {
@@ -58,7 +58,8 @@ cases = {
         "img": '/images/eva02.png',
         "price": '17',
         "skins": [
-            973,1290,497,1071,269,48,225,602,145,752,330,1038,1000,763,99,90,817,1340,245,994,197,1141,465,725,940,781,54,573,480,408,1449,1450
+            973, 1290, 497, 1071, 269, 48, 225, 602, 145, 752, 330, 1038, 1000, 763, 99, 90, 817, 1340, 245, 994, 197,
+            1141, 465, 725, 940, 781, 54, 573, 480, 408, 1449, 1450
         ]
     },
     'SHREK': {
@@ -66,7 +67,8 @@ cases = {
         "img": '/images/shrek.png',
         "price": '0.89',
         "skins": [
-            120,1104,267,595,1056,425,1119,426,748,212,493,457,844,993,1295,352,1125,183,243,920,772,1455
+            120, 1104, 267, 595, 1056, 425, 1119, 426, 748, 212, 493, 457, 844, 993, 1295, 352, 1125, 183, 243, 920,
+            772, 1455
         ]
     },
     'DEEP_ROCK': {
@@ -143,9 +145,12 @@ cases = {
     }
 }
 
+
 newcases = {}
+
 with open("data.txt", "rb") as f:
     newcases = pickle.load(f)
+
 DATABASE = "database.db"
 
 
@@ -187,8 +192,7 @@ def add_case(caseData: CaseData):
             "price": str(caseData.price),
             "skins": caseData.skins
         }
-        with open("data.txt", "wb") as f:
-            pickle.dump(newcases, f)
+        pickle.dump(newcases, open("data.txt", "wb"))
         return {"status": "success", "data": newcases[caseData.id]}
     except Exception as e:
         return {"status": "error", "message": str(e)}
