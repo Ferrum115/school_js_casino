@@ -52,56 +52,12 @@ export default function Home(){
                     <div className="case-price">Цена: 4</div>
                 </Link>
 
-                <Link to="/case/EPSTEIN" className="case-card">
+                <Link to="/case/CHEB" className="case-card">
                     <div className="case-img">
-                        <img src="/images/EPSTEIN.png" />
+                        <img src="/images/cheb.png" />
                     </div>
-                    <div className="case-title">EPSTEIN</div>
-                    <div className="case-price">Цена: 1000</div>
-                </Link>
-                
-                <Link to="/case/DEVIANT" className="case-card">
-                    <div className="case-img">
-                        <img src="/images/cyberlife.png" />
-                    </div>
-                    <div className="case-title">DEVIANT</div>
-                    <div className="case-price">Цена: 7</div>
-                </Link>
-
-                <Link to="/case/EVA-02" className="case-card">
-                    <div className="case-img">
-                        <img src="/images/eva02.png" />
-                    </div>
-                    <div className="case-title">EVA-02</div>
-                    <div className="case-price">Цена: 0.89</div>
-                </Link>
-
-                <Link to="/case/EPSTEIN" className="case-card">
-                    <div className="case-img">
-                        <img src="/images/EPSTEIN.png" />
-                    </div>
-                    <div className="case-title">EPSTEIN</div>
-                    <div className="case-price">Цена: 1000</div>
-                </Link>
-
-            </div>
-
-            <h1 className="type_name">Мем кейсы</h1>
-            <div className="table">
-                <Link to="/case/USP-S" className="case-card">
-                    <div className="case-img">
-                    <img src="/images/USPS_CASE.png" />
-                    </div>
-                    <div className="case-title">USP-S</div>
-                    <div className="case-price">Цена: 4</div>
-                </Link>
-
-                <Link to="/case/EPSTEIN" className="case-card">
-                    <div className="case-img">
-                        <img src="/images/EPSTEIN.png" />
-                    </div>
-                    <div className="case-title">EPSTEIN</div>
-                    <div className="case-price">Цена: 1000</div>
+                    <div className="case-title">CHEBURASHKA</div>
+                    <div className="case-price">Цена: 35</div>
                 </Link>
                 
                 <Link to="/case/DEVIANT" className="case-card">
@@ -120,12 +76,95 @@ export default function Home(){
                     <div className="case-price">Цена: 17</div>
                 </Link>
 
+                <Link to="/case/DEEP_ROCK" className="case-card">
+                    <div className="case-img">
+                        <img src="/images/deep.png" />
+                    </div>
+                    <div className="case-title">DEEP ROCK</div>
+                    <div className="case-price">Цена: 3</div>
+                </Link>
+
+                <Link to="/case/HELLDIVERS" className="case-card">
+                    <div className="case-img">
+                        <img src="/images/helldiver.png" />
+                    </div>
+                    <div className="case-title">HELLDIVERS</div>
+                    <div className="case-price">Цена: 5</div>
+                </Link>
+            </div>
+
+            <h1 className="type_name">Мем кейсы</h1>
+            <div className="table">
+                <Link to="/case/EPSTEIN" className="case-card">
+                    <div className="case-img">
+                        <img src="/images/EPSTEIN.png" />
+                    </div>
+                    <div className="case-title">EPSTEIN</div>
+                    <div className="case-price">Цена: 6</div>
+                </Link>
+
+                <Link to="/case/ZAREGAI" className="case-card">
+                    <div className="case-img">
+                        <img src="/images/zaregai.png" />
+                    </div>
+                    <div className="case-title">ZAREGAI</div>
+                    <div className="case-price">Цена: 10</div>
+                </Link>
+
                 <Link to="/case/SHREK" className="case-card">
                     <div className="case-img">
                         <img src="/images/shrek.png" />
                     </div>
                     <div className="case-title">SHREK</div>
-                    <div className="case-price">Цена: 1000</div>
+                    <div className="case-price">Цена: 0.89</div>
+                </Link>
+
+                <Link to="/case/POVAR" className="case-card">
+                    <div className="case-img">
+                        <img src="/images/povar.png" />
+                    </div>
+                    <div className="case-title">POVAR</div>
+                    <div className="case-price">Цена: 60</div>
+                </Link>
+
+                <Link to="/case/GYM" className="case-card">
+                    <div className="case-img">
+                        <img src="/images/gym.png" />
+                    </div>
+                    <div className="case-title">GYM 5x30</div>
+                    <div className="case-price">Цена: 70</div>
+                </Link>
+
+            </div>
+
+            <h1 className="type_name">Сеттинг кейсы</h1>
+            <div className="table">
+                <Link to="/case/DRAGON" className="case-card">
+                    <div className="case-img">
+                        <img src="/images/toothless.png" />
+                    </div>
+                    <div className="case-title">Dragon</div>
+                    <div className="case-price">Цена: 9</div>
+                </Link>
+
+                <Link to="/case/EGYPT" className="case-card">
+                    <div className="case-img">
+                        <img src="/images/faraon.png" />
+                    </div>
+                    <div className="case-title">EGYPT</div>
+                    <div className="case-price">Цена: 7</div>
+                </Link>
+
+            </div>
+
+            <h1 className="type_name">Спонсор кейсы</h1>
+            <div className="table">
+                <Link to="/case/TBANK" className="case-card">
+                    <div className="case-img">
+                        <img src="/images/love.png" />
+                    </div>
+                    <div className="case-title">T-BANK</div>
+                    <div className="case-price">Цена: 5</div>
                 </Link>
 
             </div>
