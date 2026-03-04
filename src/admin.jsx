@@ -13,7 +13,7 @@ export default function Admin() {
     const [name, setName] = useState('');
     const [price, setPrice] = useState(0);
     const [image, setImage] = useState('');
-    const [skins, setSkins] = useState([0]);
+    const [skins, setSkins] = useState('');
     if (!user) return <Login onLogin={login} />;
     const sendCase = () => {
         fetch('http://127.0.0.1:8000/case', {

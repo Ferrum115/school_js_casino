@@ -57,7 +57,7 @@ export default function CasePage() {
         console.error(err);
         setLoading(false);
       });
-  }, [caseId, user]);
+  }, [caseId]);
 
   const rarityOrder = ["Consumer","Industrial", "Mil-spec", "Restricted", "Classified", "Covert","Extraordinary"];
   const sortedSkins = data?.skins?.slice().sort((a, b) => {
@@ -169,8 +169,8 @@ export default function CasePage() {
         <div className="skin-preview">
           {sortedSkins.map(skin => (
             <div className={`skin-card ${skin.Rarity}`} key={skin.ID}>
-              <img src={skin.Image_path} alt={skin.Name}/>
-              <div style={{color: '#1d1e29'}}>{skin.Name}</div>
+            <img src={skin.Image_path} alt={skin.Name}/>
+            <div style={{color: '#1d1e29'}}>{skin.Name}</div>
             </div>
           ))}
         </div>
