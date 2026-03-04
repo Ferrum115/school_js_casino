@@ -73,7 +73,7 @@ cases = {
 
 newcases = {}
 
-with open("data.txt", "r") as f:
+with open("data.txt", "rb") as f:
     newcases = pickle.load(f)
 
 DATABASE = "database.db"
@@ -117,7 +117,7 @@ def add_case(caseData: CaseData):
             "price": str(caseData.price),
             "skins": caseData.skins
         }
-        pickle.dump(newcases, open("data.txt", "w"))
+        pickle.dump(newcases, open("data.txt", "wb"))
         return {"status": "success", "data": newcases[caseData.id]}
     except Exception as e:
         return {"status": "error", "message": str(e)}
