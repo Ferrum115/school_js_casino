@@ -26,7 +26,7 @@ export default function Admin() {
             id: id,
             title: name,
             image: image,
-            price: parseInt(price),
+            price: Number(price),
             skins: skins.split(',').map(Number)
         })
         })
@@ -40,7 +40,7 @@ export default function Admin() {
                 .then(res => res.json())
                 .then(data => {
                     setCases(data.cases || {});
-                    setNewCases(data.newCases || {});
+                    setNewCases(data.newcases || {});
                 });
         }
     });
@@ -115,7 +115,7 @@ export default function Admin() {
                     .then(res => res.json())
                     .then(data => {
                         setCases(data.cases || {});
-                        setNewCases(data.newCases || {});
+                        setNewCases(data.newcases || {});
                     });
                     }}>Обновить кейсы
                 </button>
