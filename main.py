@@ -5,6 +5,7 @@ import random
 from pydantic import BaseModel
 from typing import List
 import pickle
+import os
 
 app=FastAPI()
 app.add_middleware(
@@ -22,8 +23,8 @@ class CaseData(BaseModel):
     id: str
     title: str
     image: str
-    price: int
-    skins: str
+    price: float
+    skins: List[int]
 
 cases = {
     'USP-S': {
