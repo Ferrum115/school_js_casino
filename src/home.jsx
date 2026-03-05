@@ -95,6 +95,14 @@ export default function Home(){
                     <div className="case-price">Цена: 15</div>
                 </Link>
                 
+                <Link to="/case/RDR" className="case-card">
+                    <div className="case-img">
+                        <img src="/images/rdr.png" />
+                    </div>
+                    <div className="case-title">RDR 2</div>
+                    <div className="case-price">Цена: 5</div>
+                </Link>
+
                 <Link to="/case/DEVIANT" className="case-card">
                     <div className="case-img">
                         <img src="/images/cyberlife.png" />
@@ -216,18 +224,6 @@ export default function Home(){
                     </div>
                     <div className="case-title">COPILOT</div>
                     <div className="case-price">Цена: 0.7</div>
-                </Link>
-
-            </div>
-
-            <h1 className="type_name">Спонсор кейс</h1>
-            <div className="table">
-                <Link to="/case/TBANK" className="case-card">
-                    <div className="case-img">
-                        <img src="/images/love.png" />
-                    </div>
-                    <div className="case-title">T-BANK</div>
-                    <div className="case-price">Цена: 5</div>
                 </Link>
 
             </div>
